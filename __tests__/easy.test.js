@@ -1,5 +1,6 @@
 const {
-    longestPassword
+    longestPassword,
+    firstUnique
 } = require("../easy");
 
 // it has to contain only alphanumerical characters (a−z, A−Z, 0−9);
@@ -33,6 +34,41 @@ describe("LongestPassword", () => {
         expect(actual).toBe(expected);
         actual = longestPassword("3141 592 653589793");
         expected = 9;
+        expect(actual).toBe(expected);
+    });
+});
+
+let largeArr = [];
+for (let i = 0; i < 50000; i++) {
+    largeArr.push(i);
+    largeArr.push(i);
+}
+largeArr.splice(50000, 1);
+
+describe("FirstUnique", () => {
+    test("Function returns a number", () => {
+        const actual = firstUnique([1, 1]);
+        const expected = -1;
+        expect(actual).toBe(expected);
+    });
+    test("Function returns index of only unique in array", () => {
+        const actual = firstUnique([1, 1, 2, 3, 3]);
+        const expected = 2;
+        expect(actual).toBe(expected);
+    });
+    test("Function returns lowest indexed number from multiple uniques", () => {
+        const actual = firstUnique([1, 4, 1, 5, 9, 2, 6, 5, 3, 5, 8, 9]);
+        const expected = 4;
+        expect(actual).toBe(expected);
+    });
+    test("Function works with large arrays", () => {
+        const actual = firstUnique(largeArr);
+        const expected = 25000;
+        expect(actual).toBe(expected);
+    });
+    test("Function works with single arrays", () => {
+        const actual = firstUnique([6]);
+        const expected = 6;
         expect(actual).toBe(expected);
     });
 });

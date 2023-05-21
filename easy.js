@@ -17,3 +17,27 @@ exports.longestPassword = (S) => {
     });
     return longest;
 };
+
+exports.firstUnique = (A) => {
+    if (A.length === 1) return A[0];
+    let first = -1;
+    let itemCounts = {};
+    let uniqueIndexes = [];
+    for (let i = 0; i < A.length; i++) {
+        if (!itemCounts.hasOwnProperty(A[i])) {
+            itemCounts[A[i]] = [i]
+        } else {
+            itemCounts[A[i]].push(i);
+        }
+    }
+    for (item in itemCounts) {
+        if (itemCounts[item].length === 1) {
+            uniqueIndexes.push(itemCounts[item][0]);
+        }
+    }
+    if (uniqueIndexes.length > 0) {
+        uniqueIndexes.sort(function(a,b){return a - b})
+        first = A[uniqueIndexes[0]];
+    }
+    return first;
+};
