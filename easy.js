@@ -41,3 +41,18 @@ exports.firstUnique = (A) => {
     }
     return first;
 };
+
+exports.strSymmetryPoint = (S) => {
+    if (S.length === 1) return 0;
+    
+    let noIndex = -1;
+    if (S.length % 2 === 0) return noIndex;
+
+    const midIndex = Math.floor(S.length / 2);
+    for (let i = midIndex - 1; i >= 0; i--) {
+        let checkOne = i;
+        let checkTwo = S.length - 1 - i;
+        if (S.charAt(checkOne) !== S.charAt(checkTwo)) return noIndex;
+    }
+    return midIndex;
+};

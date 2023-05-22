@@ -1,6 +1,7 @@
 const {
     longestPassword,
-    firstUnique
+    firstUnique,
+    strSymmetryPoint
 } = require("../easy");
 
 // it has to contain only alphanumerical characters (a−z, A−Z, 0−9);
@@ -69,6 +70,40 @@ describe("FirstUnique", () => {
     test("Function works with single arrays", () => {
         const actual = firstUnique([6]);
         const expected = 6;
+        expect(actual).toBe(expected);
+    });
+});
+
+describe("StrSymmetryPoint", () => {
+    test("Function returns a number", () => {
+        const actual = strSymmetryPoint([1, 2]);
+        const expected = -1;
+        expect(actual).toBe(expected);
+    });
+    test("Function returns 0 for single letter string", () => {
+        const actual = strSymmetryPoint("N");
+        const expected = 0;
+        expect(actual).toBe(expected);
+    });
+    test("Function returns -1 for even length string", () => {
+        const actual = strSymmetryPoint("No");
+        const expected = -1;
+        expect(actual).toBe(expected);
+    });
+    test("Function returns symmetry index in symmetrical strings", () => {
+        let actual = strSymmetryPoint("racecar");
+        let expected = 3;
+        expect(actual).toBe(expected);
+        actual = strSymmetryPoint("saippuakivikauppias");
+        expected = 9;
+        expect(actual).toBe(expected);
+    });
+    test("Function returns -1 if string is not symmetrical", () => {
+        let actual = strSymmetryPoint("abc");
+        let expected = -1;
+        expect(actual).toBe(expected);
+        actual = strSymmetryPoint("saippuakivikauppiax")
+        expected = -1;
         expect(actual).toBe(expected);
     });
 });
