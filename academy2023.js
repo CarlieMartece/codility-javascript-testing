@@ -25,6 +25,7 @@ exports.commonLetter = (S) => {
             position = findDuplicates(iArray)[0];
         };
     }
+    if (position === null) return [];
     let i = 0;
     while (indexOne === null && i < S.length) {
         let string = S[i];
@@ -42,9 +43,5 @@ exports.commonLetter = (S) => {
         }
         j++;
     }
-    if (position !== null) {
-        return [indexOne, indexTwo, position];
-    } else {
-        return []
-    }
+    return [indexOne, indexTwo, position];
 };
