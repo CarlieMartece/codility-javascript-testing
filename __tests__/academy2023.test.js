@@ -1,5 +1,6 @@
 const {
-    commonLetter
+    commonLetter,
+    checkRectangle
 } = require("../academy2023");
 
 describe("CommonLetter", () => {
@@ -42,5 +43,42 @@ describe("CommonLetter", () => {
         const expected = [0, 1, 0];
         const actual = commonLetter(input);
         expect(actual).toEqual(expected);
+    });
+});
+
+describe("CheckRectangle", () => {
+    test("Function returns a boolean", () => {
+        const actual = checkRectangle("v");
+        expect(typeof(actual)).toBe("boolean");
+    });
+    test("Function returns true if robot makes one of each move", () => {
+        const actual = checkRectangle("v>^<");
+        const expected = true;
+        expect(actual).toBe(expected);
+    });
+    test("Function passes sample test one, returning true for a four by five rectangle", () => {
+        const actual = checkRectangle("^^^<<<<vvv>>>>");
+        const expected = true;
+        expect(actual).toBe(expected);
+    });
+    test("Function passes sample test two, returning true for a two by three rectangle", () => {
+        const actual = checkRectangle("<vvv>>^^^<");
+        const expected = true;
+        expect(actual).toBe(expected);
+    });
+    test("Function passes sample test three, returning false if rectangle is two moves short", () => {
+        const actual = checkRectangle("<^^^>v");
+        const expected = false;
+        expect(actual).toBe(expected);
+    });
+    test("Function fails if robot makes less than three turns", () => {
+        const actual = checkRectangle("<<>>");
+        const expected = false;
+        expect(actual).toBe(expected);
+    });
+    test("Function fails if robot makes more than five turns", () => {
+        const actual = checkRectangle(">>vv>v<<^<^^");
+        const expected = false;
+        expect(actual).toBe(expected);
     });
 });

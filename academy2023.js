@@ -45,3 +45,20 @@ exports.commonLetter = (S) => {
     }
     return [indexOne, indexTwo, position];
 };
+
+exports.checkRectangle = (moves) => {
+    const pointObj = {
+        "<": 0,
+        ">": 0,
+        "^": 0,
+        "v": 0
+    }
+    const strArr = moves.split("");
+    let changeDirection = 0;
+    for (let i = 0; i < strArr.length; i++) {
+        pointObj[strArr[i]]++;
+        if (strArr[i] !== strArr[i + 1]) changeDirection++;
+    }
+    if (changeDirection < 3 || changeDirection > 5) return false;
+    return pointObj["<"] === pointObj[">"] && pointObj["^"] === pointObj["v"];
+};
