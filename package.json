@@ -1,7 +1,7 @@
 {
   "name": "codility-javascript-testing",
   "version": "1.0.0",
-  "description": "...tech test practice...",
+  "description": "tech test practice",
   "main": "easy.js",
   "scripts": {
     "test": "jest"
